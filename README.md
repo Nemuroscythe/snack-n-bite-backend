@@ -34,7 +34,7 @@ flask --app main --debug run
 ```
 
 ## Lancer les tests pytest
->A noter que pytest reconnait uniquement les _fichiers_ avec **\_test** et les _fonctions_ commencant par **test_** 
+>À noter que pytest reconnait uniquement les _fichiers_ avec **\_test** et les _fonctions_ commençant par **test_** 
 ```sh
 python -m pytest
 ```
