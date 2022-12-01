@@ -12,7 +12,9 @@ cors = CORS(app, origins=["http://127.0.0.1:5173", "http://localhost:5173"])
 database = SQLAlchemy(app)
 database.init_app(app)
 
-from .hello.controller.helloController import bp
+from .hello.controller.helloController import bp as hello_blueprint
+from .dishes.controller.dishesController import bp as dishes_blueprint
 
 #     Blueprints
-app.register_blueprint(bp)
+app.register_blueprint(hello_blueprint)
+app.register_blueprint(dishes_blueprint)
