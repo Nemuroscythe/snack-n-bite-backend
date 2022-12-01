@@ -9,5 +9,5 @@ BASE_URL = 'localhost'
 DATABASE_PORT = '5432'
 USERNAME = 'snack-n-bite-backend'
 PASSWORD = 'SnackNBitePassW00rd'
-DATABASE = 'snack-n-bite'
+DATABASE = 'snack-n-bite-database'
 SQLALCHEMY_DATABASE_URI = f"postgresql://{USERNAME}:{PASSWORD}@{BASE_URL}:{DATABASE_PORT}/{DATABASE}"
