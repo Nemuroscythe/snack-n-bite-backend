@@ -1,3 +1,4 @@
+from main import app
 from main.dish.repository import dishRepository
 from main.dish.service import dishMapper
 
@@ -9,7 +10,8 @@ def get_dishes():
 
 def get_dish(dish_id):
     dish = dishRepository.get_dish(dish_id)
-    return dishMapper.convert_row_dish_to_dish_dto(dish)
+    app.logger.debug(dish.ingredients)
+    return dishMapper.to_dish_detail_dto(dish)
 
 
 def create_dish(body):
