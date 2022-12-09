@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, jsonify
+    Blueprint, jsonify, request
 )
 
 from main.dishes.service import dishesService
@@ -12,3 +12,20 @@ def get_dishes():
     dishes = dishesService.get_dishes()
     dishes_dict = map(lambda dish: dish.__dict__, dishes)
     return jsonify(list(dishes_dict))
+
+@bp.route('', methods=["POST"])
+def create_dishes():
+    body = request.json
+    message = dishesService.create_dish(body)
+    return jsonify(message.__dict__), 201
+
+@bp.route('', methods=["PUT"])
+def update_dishes():
+    body = request.json
+    dishesService.update_dish(body)
+    return "", 204
+
+@bp.route('', methods=["DELETE"])
+def delete_dishes(dish_id):
+    dishesService.delete_dish(id)
+    return "", 204
