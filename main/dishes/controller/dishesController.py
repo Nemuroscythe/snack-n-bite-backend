@@ -15,7 +15,7 @@ def get_dishes():
 
 @bp.route('/<dish_id>', methods=["GET"])
 def get_dish(dish_id):
-    dish = dishesService.get_dish()
+    dish = dishesService.get_dish(dish_id)
     return jsonify(dish.__dict__)
 
 @bp.route('', methods=["POST"])

@@ -25,3 +25,6 @@ def delete_dish(dish_id):
     db.session.delete(dish_db)
     db.session.commit()
     return None
+
+def get_dish(dish_id):
+    return db.get_or_404(Dish, dish_id)
