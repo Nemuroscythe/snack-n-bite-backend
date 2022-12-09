@@ -7,7 +7,6 @@ from main import database as db
 
 class Dish(db.Model):
     __tablename__ = 'dishes'
-    __table_args__ = {"schema": "public"}
     id_dishes = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     name = db.Column(db.String(50))
     unit_price = db.Column(db.Integer)
