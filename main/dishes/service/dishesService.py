@@ -1,5 +1,6 @@
 from main.dishes.repository import dishesRepository
 from main.dishes.service import dishesMapper
+from main.dishes.service.dto.dishDTO import DishDTO
 
 
 def get_dishes():
@@ -17,3 +18,7 @@ def update_dish(id, body):
 
 def delete_dish(id):
     return None
+
+
+def get_dish():
+    return DishDTO("pizza", 3, "id")

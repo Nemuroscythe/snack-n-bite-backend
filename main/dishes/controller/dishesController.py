@@ -13,6 +13,11 @@ def get_dishes():
     dishes_dict = map(lambda dish: dish.__dict__, dishes)
     return jsonify(list(dishes_dict))
 
+@bp.route('/<dish_id>', methods=["GET"])
+def get_dish(dish_id):
+    dish = dishesService.get_dish()
+    return jsonify(dish.__dict__)
+
 @bp.route('', methods=["POST"])
 def create_dishes():
     body = request.json
