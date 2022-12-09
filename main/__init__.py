@@ -13,8 +13,8 @@ database = SQLAlchemy(app)
 database.init_app(app)
 
 from .hello.controller.helloController import bp as hello_blueprint
-from .dishes.controller.dishesController import bp as dishes_blueprint
+from .dish.controller.dishController import bp as dish_blueprint
 
 #     Blueprints
 app.register_blueprint(hello_blueprint)
-app.register_blueprint(dishes_blueprint)
+app.register_blueprint(dish_blueprint)

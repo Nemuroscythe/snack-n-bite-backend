@@ -1,6 +1,6 @@
 from sqlalchemy.engine import Row
 
-from main.dishes.service.dto.dishDTO import DishDTO
+from main.dish.service.dto.dishDto import DishDTO
 
 
 def convert_row_dish_list_to_dish_dto_list(row_dish_list):
