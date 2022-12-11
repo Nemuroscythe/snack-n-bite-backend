@@ -22,4 +22,4 @@ def to_dish_detail_dto(dish):
 
 
 def to_dish(dish_detail):
-    return Dish(dish_detail["name"], dish_detail["unit_price"])
+    return Dish(dish_detail["name"], dish_detail["unit_price"], dish_detail["id_cooks"])

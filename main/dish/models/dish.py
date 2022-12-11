@@ -16,8 +16,10 @@ class Dish(db.Model):
     name = db.Column(db.String(50))
     unit_price = db.Column(db.Integer)
     ingredients = db.relationship(Ingredient, secondary=dishes_ingredients, backref='dishes')
+    id_cooks = db.Column(UUID(as_uuid=True))
 
-    def __init__(self, name, unit_price, id = uuid.uuid4()):
+    def __init__(self, name, unit_price, id_cooks, id=uuid.uuid4()):
         self.name = name
         self.unit_price = unit_price
+        self.id_cooks = id_cooks
         self.id_dishes = id
