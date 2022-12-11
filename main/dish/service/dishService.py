@@ -14,8 +14,9 @@ def get_dish(dish_id):
     return dishMapper.to_dish_detail_dto(dish)
 
 
-def create_dish(body):
-    return None
+def create_dish(dish_detail):
+    dish = dishMapper.to_dish(dish_detail)
+    return dishRepository.create_dish(dish)
 
 
 def update_dish(id, body):

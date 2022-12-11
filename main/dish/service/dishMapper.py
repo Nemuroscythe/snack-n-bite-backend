@@ -1,5 +1,6 @@
 from sqlalchemy.engine import Row
 
+from main.dish.models.dish import Dish
 from main.dish.service.dto.dishDetailDto import DishDetailDto
 from main.dish.service.dto.dishDto import DishDto
 
@@ -18,3 +19,7 @@ def to_dish_detail_dto(dish):
     return DishDetailDto(dish.name,
                          dish.unit_price,
                          list(map(lambda ingredient: ingredient.name, dish.ingredients)))
+
+
+def to_dish(dish_detail):
+    return Dish(dish_detail["name"], dish_detail["unit_price"])

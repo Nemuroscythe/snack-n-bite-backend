@@ -18,19 +18,19 @@ def get_dish(dish_id):
     dish = dishService.get_dish(dish_id)
     return jsonify(dish.__dict__)
 
-@bp.route('', methods=["POST"])
-def create_dishes():
-    body = request.json
-    message = dishService.create_dish(body)
-    return jsonify(message.__dict__), 201
+@bp.route('/', methods=["POST"])
+def create_dish():
+    dish_detail = request.json
+    message = dishService.create_dish(dish_detail)
+    return jsonify(message), 201
 
 @bp.route('', methods=["PUT"])
-def update_dishes():
+def update_dish():
     body = request.json
     dishService.update_dish(body)
     return "", 204
 
 @bp.route('', methods=["DELETE"])
-def delete_dishes(dish_id):
+def delete_dish(dish_id):
     dishService.delete_dish(id)
     return "", 204

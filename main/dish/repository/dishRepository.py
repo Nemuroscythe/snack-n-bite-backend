@@ -10,7 +10,7 @@ def get_dishes():
 def create_dish(dish):
     db.session.add(dish)
     db.session.commit()
-    return None
+    return dish.id_dishes
 
 
 def update_dish(dish):

@@ -17,7 +17,7 @@ class Dish(db.Model):
     unit_price = db.Column(db.Integer)
     ingredients = db.relationship(Ingredient, secondary=dishes_ingredients, backref='dishes')
 
-    def __init__(self, name, unit_price, id):
+    def __init__(self, name, unit_price, id = uuid.uuid4()):
         self.name = name
         self.unit_price = unit_price
         self.id_dishes = id
