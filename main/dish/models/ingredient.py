@@ -7,7 +7,7 @@ class Ingredient(db.Model):
     stock_amount = db.Column(db.Integer)
     alerting_amount = db.Column(db.Integer)
 
-    def __init__(self, name, stock_amount, alerting_stock):
+    def __init__(self, name, stock_amount=None, alerting_stock=None):
         self.name = name
         self.stock_amount = stock_amount
         self.alerting_stock = alerting_stock

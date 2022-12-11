@@ -1,5 +1,5 @@
 from main import app
-from main.dish.repository import dishRepository
+from main.dish.repository import dishRepository, ingredientRepository
 from main.dish.service import dishMapper
 
 
@@ -14,8 +14,10 @@ def get_dish(dish_id):
     return dishMapper.to_dish_detail_dto(dish)
 
 
-def create_dish(dish_detail):
-    dish = dishMapper.to_dish(dish_detail)
+def create_dish(create_dish_request):
+    dish = dishMapper.to_dish(create_dish_request)
+    dish.ingredients = list(map(lambda ingredient: ingredientRepository.get_ingredient(ingredient.name), dish.ingredients))
+    app.logger.debug(dish.ingredients)
     return dishRepository.create_dish(dish)
 
 
