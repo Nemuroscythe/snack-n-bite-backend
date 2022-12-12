@@ -17,7 +17,8 @@ def convert_row_dish_to_dish_dto(row_dish):
 
 
 def to_dish_detail_dto(dish):
-    return DishDetailDto(dish.name,
+    return DishDetailDto(dish.id_dishes,
+                         dish.name,
                          dish.unit_price,
                          list(map(lambda ingredient: ingredient.name, dish.ingredients)))
 
