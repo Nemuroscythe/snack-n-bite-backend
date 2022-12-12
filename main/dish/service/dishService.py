@@ -16,14 +16,16 @@ def get_dish(dish_id):
 
 def create_dish(create_dish_request):
     dish = dishMapper.to_dish(create_dish_request)
-    dish.ingredients = list(map(lambda ingredient: ingredientRepository.get_ingredient(ingredient.name), dish.ingredients))
+    dish.ingredients = list(
+        map(lambda ingredient: ingredientRepository.get_ingredient(ingredient.name), dish.ingredients))
     app.logger.debug(dish.ingredients)
     return dishRepository.create_dish(dish)
 
 
 def update_dish(dish_id, update_dish_request):
     dish = dishMapper.to_dish(update_dish_request)
-    dish.ingredients = list(map(lambda ingredient: ingredientRepository.get_ingredient(ingredient.name), dish.ingredients))
+    dish.ingredients = list(
+        map(lambda ingredient: ingredientRepository.get_ingredient(ingredient.name), dish.ingredients))
     dishRepository.update_dish(dish, dish_id)
     return None
 
