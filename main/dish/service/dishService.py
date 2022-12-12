@@ -28,5 +28,6 @@ def update_dish(dish_id, update_dish_request):
     return None
 
 
-def delete_dish(id):
+def delete_dish(dish_id):
+    dishRepository.delete_dish(dish_id)
     return None

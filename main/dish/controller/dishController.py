@@ -34,7 +34,7 @@ def update_dish(dish_id):
     return "", 204
 
 
-@bp.route('', methods=["DELETE"])
+@bp.route('/<dish_id>', methods=["DELETE"])
 def delete_dish(dish_id):
-    dishService.delete_dish(id)
+    dishService.delete_dish(dish_id)
     return "", 204
