@@ -27,10 +27,10 @@ def create_dish():
     return jsonify(message), 201
 
 
-@bp.route('', methods=["PUT"])
-def update_dish():
-    body = request.json
-    dishService.update_dish(body)
+@bp.route('/<dish_id>', methods=["PUT"])
+def update_dish(dish_id):
+    update_dish_request = request.json
+    dishService.update_dish(dish_id, update_dish_request)
     return "", 204
 
 

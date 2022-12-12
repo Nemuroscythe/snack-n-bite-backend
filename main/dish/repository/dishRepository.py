@@ -1,4 +1,4 @@
-from main import database as db
+from main import database as db, app
 from main.dish.models.dish import Dish
 
 
@@ -13,9 +13,14 @@ def create_dish(dish):
     return dish.id_dishes
 
 
-def update_dish(dish):
-    dish_db = db.get_or_404(Dish, dish.id_dishes)
-    dish_db.content = dish.content
+def update_dish(dish, dish_id):
+    dish_db = db.get_or_404(Dish, dish_id)
+
+    dish_db.name = dish.name
+    dish_db.unit_price = dish.unit_price
+    dish_db.id_cooks = dish.id_cooks
+    dish_db.ingredients = dish.ingredients
+
     db.session.commit()
     return None
 
