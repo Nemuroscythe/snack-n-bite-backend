@@ -1,4 +1,4 @@
-from main import database as db
+from main.model import db
 
 
 class Ingredient(db.Model):

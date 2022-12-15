@@ -1,5 +1,5 @@
-from main import database as db
 from main.dish.models.dish import Dish
+from main.model import db
 
 
 def get_dishes():

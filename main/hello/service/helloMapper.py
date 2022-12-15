@@ -1,4 +1,5 @@
-from main import app
+from flask import current_app
+
 from main.hello.models.HelloMessage import HelloMessage
 from main.hello.service.dto.HelloMessageDTO import HelloMessageDTO
 from main.hello.service.dto.HelloMessagesDTO import HelloMessagesDTO
@@ -9,7 +10,7 @@ def convert_hello_message_to_dto(hello_message):
 
 
 def convert_json_to_hello_message(hello_message_json, id=None):
-    app.logger.debug(hello_message_json)
+    current_app.logger.debug(hello_message_json)
     content = hello_message_json["content"]
     hello_message = HelloMessage(content, id)
     return hello_message

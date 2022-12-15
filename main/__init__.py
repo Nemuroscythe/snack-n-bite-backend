@@ -1,20 +1,24 @@
 from flask import Flask
 from flask_cors import CORS
-from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__, instance_relative_config=True)
+from main.model import db
 
-app.config.from_object('main.config')
-app.logger.debug(app.config.get('SQLALCHEMY_DATABASE_URI'))
 
-cors = CORS(app, origins=["http://127.0.0.1:5173", "http://localhost:5173"])
+def create_app():
+    app = Flask(__name__, instance_relative_config=True)
 
-database = SQLAlchemy(app)
-database.init_app(app)
+    app.config.from_object('main.config')
+    app.logger.debug(app.config.get('SQLALCHEMY_DATABASE_URI'))
 
-from .hello.controller.helloController import bp as hello_blueprint
-from .dish.controller.dishController import bp as dish_blueprint
+    cors = CORS(app, origins=["http://127.0.0.1:5173", "http://localhost:5173"])
 
-#     Blueprints
-app.register_blueprint(hello_blueprint)
-app.register_blueprint(dish_blueprint)
+    db.init_app(app)
+
+    from .hello.controller.helloController import bp as hello_blueprint
+    from .dish.controller.dishController import bp as dish_blueprint
+
+    #     Blueprints
+    app.register_blueprint(hello_blueprint)
+    app.register_blueprint(dish_blueprint)
+
+    return app

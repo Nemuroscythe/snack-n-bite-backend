@@ -2,7 +2,7 @@ import uuid
 
 from sqlalchemy.dialects.postgresql import UUID
 
-from main import database as db
+from main.model import db
 
 
 class HelloMessage(db.Model):

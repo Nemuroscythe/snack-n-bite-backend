@@ -2,8 +2,8 @@ import uuid
 
 from sqlalchemy.dialects.postgresql import UUID
 
-from main import database as db
 from main.dish.models.ingredient import Ingredient
+from main.model import db
 
 dishes_ingredients = db.Table('dishes_ingredients',
                               db.Column('id_dishes', db.Integer, db.ForeignKey('dishes.id_dishes')),

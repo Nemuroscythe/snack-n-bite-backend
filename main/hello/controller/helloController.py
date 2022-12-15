@@ -1,8 +1,7 @@
 from flask import (
-    Blueprint, jsonify, request
+    Blueprint, jsonify, request, current_app
 )
 
-from main import app
 from main.hello.service import helloService
 
 bp = Blueprint('hello', __name__, url_prefix='/')
@@ -11,7 +10,7 @@ bp = Blueprint('hello', __name__, url_prefix='/')
 @bp.route('/hello')
 def get_hello_messages():
     hello_messages = helloService.get_hello_messages()
-    app.logger.info(hello_messages)
+    current_app.logger.info(hello_messages)
     hello_messages_dict = map(lambda hello_message: hello_message.__dict__, hello_messages)
     return jsonify(list(hello_messages_dict))
 

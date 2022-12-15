@@ -1,5 +1,5 @@
-from main import database as db
 from main.dish.models.ingredient import Ingredient
+from main.model import db
 
 
 def get_ingredient(ingredient_name):

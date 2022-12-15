@@ -1,11 +1,12 @@
-from main import app
-from main import database as db
+from flask import current_app
+
 from main.hello.models.HelloMessage import HelloMessage
+from main.model import db
 
 
 def get_hello_messages():
     db_response = db.session.execute(db.select(HelloMessage)).all()
-    app.logger.info(type(db_response))
+    current_app.logger.info(type(db_response))
     return db_response
 
 
@@ -21,7 +22,7 @@ def create_hello_message(hello_message):
 
 
 def update_hello_message(hello_message):
-    app.logger.debug(hello_message)
+    current_app.logger.debug(hello_message)
     hello_message_db = db.get_or_404(HelloMessage,
                                      hello_message.id)
     hello_message_db.content = hello_message.content

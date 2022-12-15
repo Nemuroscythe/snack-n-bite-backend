@@ -1,4 +1,5 @@
-from main import app
+from flask import current_app
+
 from main.dish.repository import dishRepository, ingredientRepository
 from main.dish.service import dishMapper
 
@@ -10,7 +11,7 @@ def get_dishes():
 
 def get_dish(dish_id):
     dish = dishRepository.get_dish(dish_id)
-    app.logger.debug(dish.ingredients)
+    current_app.logger.debug(dish.ingredients)
     return dishMapper.to_dish_detail_dto(dish)
 
 
@@ -18,7 +19,7 @@ def create_dish(create_dish_request):
     dish = dishMapper.to_dish(create_dish_request)
     dish.ingredients = list(
         map(lambda ingredient: ingredientRepository.get_ingredient(ingredient.name), dish.ingredients))
-    app.logger.debug(dish.ingredients)
+    current_app.logger.debug(dish.ingredients)
     return dishRepository.create_dish(dish)
 
 
