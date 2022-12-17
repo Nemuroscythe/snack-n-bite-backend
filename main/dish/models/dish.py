@@ -23,3 +23,6 @@ class Dish(db.Model):
         self.unit_price = unit_price
         self.id_cooks = id_cooks
         self.id_dishes = id
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
