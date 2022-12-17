@@ -19,7 +19,7 @@ def get_dish(dish_id):
     return jsonify(dish.__dict__)
 
 
-@bp.route('/', methods=["POST"])
+@bp.route('', methods=["POST"])
 def create_dish():
     create_dish_request = request.json
     message = dishService.create_dish(create_dish_request)

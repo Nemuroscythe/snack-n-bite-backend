@@ -2,7 +2,9 @@ import json
 from http import HTTPStatus
 
 from main.dish.models.ingredient import Ingredient
+from main.dish.service.dto.createDishDto import CreateDishDto
 from main.dish.service.dto.dishDetailDto import DishDetailDto
+from main.dish.service.dto.ingredientDto import IngredientDto
 
 try:
     from types import SimpleNamespace as Namespace
@@ -50,3 +52,23 @@ def test_get_dish(client, mocker):
     assert actual_dish_detail.unit_price == expected_dish_detail.unit_price
     assert actual_dish_detail.id == expected_dish_detail.id
     assert actual_dish_detail.ingredients[0] == expected_dish_detail.ingredients[0].name
+
+
+def test_create_dish(client, mocker):
+    mocker.patch('main.dish.repository.dishRepository.create_dish',
+                 return_value=None)
+    mocker.patch('main.dish.repository.ingredientRepository.get_ingredient',
+                 return_value=Ingredient("bun"))
+    create_dish = CreateDishDto("cooks_id",
+                                "cheese burger",
+                                3,
+                                [IngredientDto("bun").__dict__])
+
+    dict__ = create_dish.__dict__
+    body = json.dumps(dict__)
+    response = client.post("/dishes",
+                           data=body,
+                           content_type='application/json')
+
+    assert response.status_code == HTTPStatus.CREATED
+    assert response.is_json
