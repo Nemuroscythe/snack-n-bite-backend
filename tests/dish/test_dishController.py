@@ -72,3 +72,22 @@ def test_create_dish(client, mocker):
 
     assert response.status_code == HTTPStatus.CREATED
     assert response.is_json
+
+
+def test_update_dish(client, mocker):
+    mocker.patch('main.dish.repository.dishRepository.update_dish',
+                 return_value=None)
+    mocker.patch('main.dish.repository.ingredientRepository.get_ingredient',
+                 return_value=Ingredient("bun"))
+    create_dish = CreateDishDto("cooks_id",
+                                "cheese burger",
+                                3,
+                                [IngredientDto("bun").__dict__])
+
+    dict__ = create_dish.__dict__
+    body = json.dumps(dict__)
+    response = client.put("/dishes/" + DISH_UUID,
+                           data=body,
+                           content_type="application/json")
+
+    assert response.status_code == HTTPStatus.NO_CONTENT
