@@ -14,7 +14,7 @@ class ValidUUID:
 
     def __set__(self, instance, value):
         if not is_valid_uuid(value):
-            raise ValueError("Your *insert name* cannot be empty or blank!")
+            raise ValueError("Your *insert name* is not a UUID!")
         return self.setter(instance, value)
 
 
