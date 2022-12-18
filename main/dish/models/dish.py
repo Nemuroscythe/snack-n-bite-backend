@@ -6,11 +6,14 @@ from main.dish.models.ingredient import Ingredient
 from main.model import db
 from main.utils.validator.NotBlank import not_blank
 from main.utils.validator.PositiveNumber import positive_number
+from main.utils.validator.ValidUUID import valid_uuid
 
 dishes_ingredients = db.Table('dishes_ingredients',
                               db.Column('id_dishes', db.Integer, db.ForeignKey('dishes.id_dishes')),
                               db.Column('name', db.Integer, db.ForeignKey('ingredients.name')))
 
+
+@valid_uuid("id_dishes")
 @positive_number("unit_price")
 @not_blank("name")
 class Dish(db.Model):
