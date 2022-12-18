@@ -15,10 +15,10 @@ from main.dish.models.dish import Dish
 from main.dish.service.dto.dishDto import DishDto
 
 DISH_UUID = "123e4567-e89b-12d3-a456-426614174000"
-
+COOKS_UUID = "00000000-e89b-12d3-a456-426614174000"
 
 def test_get_dishes(client, mocker):
-    return_value = [Dish("cheese burger", 3, "cooks_id")]
+    return_value = [Dish("cheese burger", 3, COOKS_UUID)]
     mocker.patch('main.dish.repository.dishRepository.get_dishes',
                  return_value=return_value)
     expected_dish_list = [DishDto("cheese burger", 3)]
@@ -35,7 +35,7 @@ def test_get_dishes(client, mocker):
 
 
 def test_get_dish(client, mocker):
-    mocked_dish = Dish("cheese burger", 3, "cooks_id", DISH_UUID)
+    mocked_dish = Dish("cheese burger", 3, COOKS_UUID, DISH_UUID)
     mocked_dish.ingredients = [Ingredient("bun")]
     mocker.patch('main.dish.repository.dishRepository.get_dish',
                  return_value=mocked_dish)
@@ -59,7 +59,7 @@ def test_create_dish(client, mocker):
                  return_value=None)
     mocker.patch('main.dish.repository.ingredientRepository.get_ingredient',
                  return_value=Ingredient("bun"))
-    create_dish = CreateDishDto("cooks_id",
+    create_dish = CreateDishDto(COOKS_UUID,
                                 "cheese burger",
                                 3,
                                 [IngredientDto("bun").__dict__])
@@ -79,7 +79,7 @@ def test_update_dish(client, mocker):
                  return_value=None)
     mocker.patch('main.dish.repository.ingredientRepository.get_ingredient',
                  return_value=Ingredient("bun"))
-    create_dish = CreateDishDto("cooks_id",
+    create_dish = CreateDishDto(COOKS_UUID,
                                 "cheese burger",
                                 3,
                                 [IngredientDto("bun").__dict__])

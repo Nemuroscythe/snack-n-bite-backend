@@ -12,7 +12,7 @@ dishes_ingredients = db.Table('dishes_ingredients',
                               db.Column('id_dishes', db.Integer, db.ForeignKey('dishes.id_dishes')),
                               db.Column('name', db.Integer, db.ForeignKey('ingredients.name')))
 
-
+@valid_uuid("id_cooks")
 @valid_uuid("id_dishes")
 @positive_number("unit_price")
 @not_blank("name")
