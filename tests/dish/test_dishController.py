@@ -87,7 +87,16 @@ def test_update_dish(client, mocker):
     dict__ = create_dish.__dict__
     body = json.dumps(dict__)
     response = client.put("/dishes/" + DISH_UUID,
-                           data=body,
-                           content_type="application/json")
+                          data=body,
+                          content_type="application/json")
+
+    assert response.status_code == HTTPStatus.NO_CONTENT
+
+
+def test_delete_dish(client, mocker):
+    mocker.patch('main.dish.repository.dishRepository.delete_dish',
+                 return_value=None)
+
+    response = client.delete("/dishes/" + DISH_UUID)
 
     assert response.status_code == HTTPStatus.NO_CONTENT
