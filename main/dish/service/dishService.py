@@ -6,7 +6,7 @@ from main.dish.service import dishMapper
 
 def get_dishes():
     list_row_dish = dishRepository.get_dishes()
-    return dishMapper.convert_row_dish_list_to_dish_dto_list(list_row_dish)
+    return dishMapper.to_dish_dto_list(list_row_dish)
 
 
 def get_dish(dish_id):

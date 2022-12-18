@@ -6,12 +6,12 @@ from main.dish.service.dto.dishDto import DishDto
 from main.dish.service.ingredientMapper import to_ingredient_list
 
 
-def convert_row_dish_list_to_dish_dto_list(row_dish_list):
-    dish_dto_map = map(lambda row_dish: convert_row_dish_to_dish_dto(row_dish), row_dish_list)
+def to_dish_dto_list(row_dish_list):
+    dish_dto_map = map(lambda row_dish: to_dish_dto(row_dish), row_dish_list)
     return list(dish_dto_map)
 
 
-def convert_row_dish_to_dish_dto(row_dish):
+def to_dish_dto(row_dish):
     dish = row_dish[0] if type(row_dish) == Row else row_dish
     return DishDto(dish.name, dish.unit_price, dish.id_dishes)
 
