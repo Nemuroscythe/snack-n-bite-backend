@@ -18,11 +18,11 @@ class Dish(db.Model):
     ingredients = db.relationship(Ingredient, secondary=dishes_ingredients, backref='dishes')
     id_cooks = db.Column(UUID(as_uuid=True))
 
-    def __init__(self, name, unit_price, id_cooks, id=uuid.uuid4()):
+    def __init__(self, name, unit_price, id_cooks, id=None):
         self.name = name
         self.unit_price = unit_price
         self.id_cooks = id_cooks
-        self.id_dishes = id
+        self.id_dishes = uuid.uuid4() if id is None else id
 
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
