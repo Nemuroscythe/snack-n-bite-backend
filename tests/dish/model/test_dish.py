@@ -11,36 +11,36 @@ def test_create_two_dishes_with_different_ids():
     assert cheese_burger.id_dishes != texas_burger.id_dishes
 
 
-def test_dish_with_negative_unit_price_throws_error():
+def test_create_dish_with_negative_unit_price_throws_error():
     with raises(ValueError):
         Dish("cheese burger", -2, COOKS_UUID)
 
 
-def test_dish_with_0_unit_price_throws_error():
+def test_create_dish_with_0_unit_price_throws_error():
     with raises(ValueError):
         Dish("cheese burger", 0, COOKS_UUID)
 
 
-def test_dish_with_empty_name_throws_error():
+def test_create_dish_with_empty_name_throws_error():
     with raises(ValueError):
         Dish("", 5, COOKS_UUID)
 
 
-def test_dish_with_blank_name_throws_error():
+def test_create_dish_with_blank_name_throws_error():
     with raises(ValueError):
         Dish("   ", 5, COOKS_UUID)
 
 
-def test_dish_with_number_name_throws_error():
+def test_create_dish_with_number_name_throws_error():
     with raises(ValueError):
         Dish(5, 5, COOKS_UUID)
 
 
-def test_dish_with_wrong_format_id():
+def test_create_dish_with_wrong_format_id_throws_error():
     with raises(ValueError):
         Dish("cheese burger", 5, COOKS_UUID, "wrong_id")
 
 
-def test_dish_with_wrong_format_cooks_id():
+def test_create_dish_with_wrong_format_cooks_id_throws_error():
     with raises(ValueError):
         Dish("cheese burger", 5, "wrong_id")
