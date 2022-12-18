@@ -3,6 +3,7 @@ from sqlalchemy.engine import Row
 from main.dish.models.dish import Dish
 from main.dish.service.dto.dishDetailDto import DishDetailDto
 from main.dish.service.dto.dishDto import DishDto
+from main.dish.service.dto.updateDishDto import UpdateDishDto
 from main.dish.service.ingredientMapper import to_ingredient_list
 
 
@@ -24,6 +25,15 @@ def to_dish_detail_dto(dish):
 
 
 def to_dish(create_dish_request):
-    dish = Dish(create_dish_request["name"], create_dish_request["unit_price"], create_dish_request["id_cooks"])
+    dish = Dish(create_dish_request["name"],
+                create_dish_request["unit_price"],
+                create_dish_request["id_cooks"])
     dish.ingredients = to_ingredient_list(create_dish_request["ingredients"])
     return dish
+
+
+def to_update_dish_dto(update_dish_request):
+    return UpdateDishDto(update_dish_request["id_cooks"],
+                         update_dish_request["name"],
+                         update_dish_request["unit_price"],
+                         to_ingredient_list(update_dish_request["ingredients"]))

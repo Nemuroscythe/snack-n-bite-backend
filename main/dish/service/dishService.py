@@ -2,6 +2,7 @@ from flask import current_app
 
 from main.dish.repository import dishRepository, ingredientRepository
 from main.dish.service import dishMapper
+from main.dish.service.dishMapper import to_update_dish_dto
 
 
 def get_dishes():
@@ -24,10 +25,10 @@ def create_dish(create_dish_request):
 
 
 def update_dish(dish_id, update_dish_request):
-    dish = dishMapper.to_dish(update_dish_request)
-    dish.ingredients = list(
-        map(lambda ingredient: ingredientRepository.get_ingredient(ingredient.name), dish.ingredients))
-    dishRepository.update_dish(dish, dish_id)
+    update_dish_dto = to_update_dish_dto(update_dish_request)
+    update_dish_dto.ingredients = list(
+        map(lambda ingredient: ingredientRepository.get_ingredient(ingredient.name), update_dish_dto.ingredients))
+    dishRepository.update_dish(update_dish_dto, dish_id)
     return None
 
 
