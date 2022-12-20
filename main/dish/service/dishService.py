@@ -3,6 +3,7 @@ from flask import current_app
 from main.dish.repository import dishRepository, ingredientRepository
 from main.dish.service import dishMapper
 from main.dish.service.dishMapper import to_update_dish_dto
+from main.utils.validator.validation import validate_not_blank, validate_strict_positive, validate_uuid
 
 
 def get_dishes():
@@ -17,6 +18,10 @@ def get_dish(dish_id):
 
 
 def create_dish(create_dish_request):
+    validate_not_blank(create_dish_request["name"], "dish name")
+    validate_strict_positive(create_dish_request["unit_price"], "unit price")
+    validate_uuid(create_dish_request["id_cooks"])
+
     dish = dishMapper.to_dish(create_dish_request)
     dish.ingredients = list(
         map(lambda ingredient: ingredientRepository.get_ingredient(ingredient.name), dish.ingredients))
@@ -25,6 +30,10 @@ def create_dish(create_dish_request):
 
 
 def update_dish(dish_id, update_dish_request):
+    validate_not_blank(update_dish_request["name"], "dish name")
+    validate_strict_positive(update_dish_request["unit_price"], "unit price")
+    validate_uuid(update_dish_request["id_cooks"])
+
     update_dish_dto = to_update_dish_dto(update_dish_request)
     update_dish_dto.ingredients = list(
         map(lambda ingredient: ingredientRepository.get_ingredient(ingredient.name), update_dish_dto.ingredients))

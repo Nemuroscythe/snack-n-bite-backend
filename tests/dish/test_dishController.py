@@ -18,9 +18,8 @@ DISH_UUID = "123e4567-e89b-12d3-a456-426614174000"
 COOKS_UUID = "00000000-e89b-12d3-a456-426614174000"
 
 def test_get_dishes(client, mocker):
-    return_value = [Dish("cheese burger", 3, COOKS_UUID)]
     mocker.patch('main.dish.repository.dishRepository.get_dishes',
-                 return_value=return_value)
+                 return_value=[Dish("cheese burger", 3, COOKS_UUID)])
     expected_dish_list = [DishDto("cheese burger", 3)]
 
     response = client.get("/dishes")
