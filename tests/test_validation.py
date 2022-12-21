@@ -41,12 +41,6 @@ def test_validate_strict_positive_with_zero_throws_value_error():
     assert str(exception.value) == "Your number must be strictly positive!"
 
 
-def test_validate_strict_positive_with_string_throws_value_error():
-    with raises(ValueError) as exception:
-        validate_strict_positive("five", "string")
-    assert str(exception.value) == "Your string is not a number!"
-
-
 def test_validate_uuid():
     assert validate_uuid("00000000-e89b-12d3-a456-426614174000") is None
 

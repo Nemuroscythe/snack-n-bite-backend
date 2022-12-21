@@ -9,9 +9,7 @@ def validate_not_blank(value, value_name="value"):
 
 
 def validate_strict_positive(value, value_name="value"):
-    if not isinstance(value, int) and not isinstance(value,float):
-        raise ValueError("Your {0} is not a number!".format(value_name))
-    if value <= 0:
+    if float(value) <= 0:
         raise ValueError("Your {0} must be strictly positive!".format(value_name))
 
 
