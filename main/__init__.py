@@ -4,13 +4,16 @@ from flask_cors import CORS
 from main.model import db
 
 
-def create_app():
+def create_app(config="LocalConfig"):
     app = Flask(__name__, instance_relative_config=True)
 
-    app.config.from_object('main.config')
-    app.logger.debug(app.config.get('SQLALCHEMY_DATABASE_URI'))
+    app.config.from_object("main.config." + config)
+    app.logger.debug(app.config.get("SQLALCHEMY_DATABASE_URI"))
 
-    cors = CORS(app, origins=["http://127.0.0.1:5173", "http://localhost:5173"])
+    origins = (app.config.get("FRONTEND_ORIGINS")).split(",")
+    app.logger.debug(origins)
+
+    cors = CORS(app, origins=origins)
 
     db.init_app(app)
 

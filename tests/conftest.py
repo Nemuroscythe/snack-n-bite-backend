@@ -5,11 +5,7 @@ from main import create_app, db
 
 @pytest.fixture
 def app():
-    app = create_app()
-    app.config.update({
-        'TESTING': True,
-        'SQLALCHEMY_DATABASE_URI': 'f"postgresql://:memory:"'
-    })
+    app = create_app("TestingConfig")
 
     with app.app_context():
         db.create_all()
